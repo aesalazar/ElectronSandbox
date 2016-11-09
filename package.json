@@ -25,7 +25,11 @@
     "electron-reload": "*",
     "jshint": "*"
   },
-  "jshintConfig":{
+  "jshintConfig": {
     "esversion": 6
+  },
+  "dependencies": {
+    "fin-hypergrid": "^1.0.10",
+    "socket.io-client": "^1.5.0"
   }
 }
