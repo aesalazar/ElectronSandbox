@@ -5,6 +5,13 @@
     <title>Hello World!</title>
   </head>
   <body>
+    <div style="text-align:right;">
+        <button onclick="minimizeWin()">Min</button>
+        <button onclick="maximizeWin()">Max</button>
+        <button onclick="restoreWin()">Restore</button>
+        <button onclick="closeWin()">X</button>
+    </div>
+
     <h1>Hello World!</h1>
     <!-- All of the Node.js APIs are available in this renderer process. -->
     We are using node <script>document.write(process.versions.node)</script>,
@@ -15,5 +22,24 @@
   <script>
     // You can also require other files to run in this process
     require('./renderer.js');
+    const remote = require('electron').remote;
+    var eWindow = remote.getCurrentWindow();
+
+    function maximizeWin(){
+      eWindow.maximize();
+    }
+
+    function minimizeWin(){
+      eWindow.minimize();
+    }
+
+    function restoreWin(){
+      eWindow.unmaximize();
+    }
+
+    function closeWin(){
+      eWindow.close();
+    }
+
   </script>
 </html>
