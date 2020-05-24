@@ -1,29 +1,34 @@
-const electron = require('electron');
 // Module to control application life.
+const electron = require('electron');
 const app = electron.app;
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow;
 
-//Monitor for changes to reload web content
-//require('electron-reload')(__dirname);
+// Monitor for changes to reload ALL content
+const path = require('path')
 
-//Monitor for changes to reload ALL content
-require('electron-reload')(__dirname, {  electron: require('electron-prebuilt')});
+require('electron-reload')(__dirname, {
+  electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
+});
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
 function createWindow () {
-  // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600});
 
-  // and load the index.html of the app.
-  mainWindow.loadURL(`file://${__dirname}/index.html`);
+  // Module to create native browser window.
+  const BrowserWindow = electron.BrowserWindow;
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
-    console.error("test");
+  // Create the browser window with node ON
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {nodeIntegration: true}
+  });
+
+  mainWindow.on('show', function () {
+    // Open the DevTools
+    mainWindow.webContents.openDevTools();
+  });
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -32,6 +37,10 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+  
+  // Call show explicitly to trigger the event
+  mainWindow.loadURL(`file://${__dirname}/index.html`);
+  mainWindow.show();
 }
 
 // This method will be called when Electron has finished
