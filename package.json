@@ -22,7 +22,7 @@
   "homepage": "https://github.com/aesalazar/ElectronSandbox#readme",
   "devDependencies": {
     "electron-reload": "^1.5.0",
-    "jshint": "*"
+    "jshint": "^2.11.1"
   },
   "dependencies": {
     "electron": "^9.0.0"
