@@ -25,7 +25,7 @@
     "jshint": "^2.11.1"
   },
   "dependencies": {
-    "electron": "^9.0.0"
+    "electron": "^9.3.0"
   },
   "jshintConfig": {
     "esversion": 6
